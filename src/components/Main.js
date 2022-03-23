@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import api from '../utils/api';
 import Card from './Card';
 
-function Main(props) {
-    const [userName, setUserName] = useState('Capitan Flint');
-    const [userDescription, setUserDescription] = useState('Mariner');
-    const [userAvatar, setUserAvatar] = useState('../images/avatar.jpg');
+function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
+    const [userName, setUserName] = useState('');
+    const [userDescription, setUserDescription] = useState('');
+    const [userAvatar, setUserAvatar] = useState(null);
     const [cards, setCards] = useState([]);
 
 
@@ -23,21 +23,15 @@ function Main(props) {
     return (
         <main className="main">
             <section className="profile">
-                <div onClick={props.onEditAvatar} className="profile__avatar">
-                    <img className="profile__image" src={userAvatar} alt="Аватар"/>
+                <div  className="profile__avatar" onClick={onEditAvatar}>
+                    {userAvatar && <img className="profile__image" src={userAvatar} alt="Аватар"/>}
                 </div>
                 <div className="profile__info">
                     <h1 className="profile__title">{userName}</h1>
-                    <button onClick={props.onEditProfile}
-                            className="button profile__button profile__button_action_edit" type="button">
-
-                    </button>
+                    <button className="button profile__button profile__button_action_edit" type="button" onClick={onEditProfile}/>
                     <p className="profile__description">{userDescription}</p>
                 </div>
-                <button onClick={props.onAddPlace} className="button profile__button profile__button_action_add"
-                        type="button">
-
-                </button>
+                <button className="button profile__button profile__button_action_add"type="button" onClick={onAddPlace} />
             </section>
             <section className="cards">
                 <ul className="cards__list">
@@ -45,7 +39,7 @@ function Main(props) {
                         <Card
                             key={card._id}
                             card={card}
-                            onCardClick={props.onCardClick}
+                            onCardClick={onCardClick}
                         />
                     ))}
                 </ul>
