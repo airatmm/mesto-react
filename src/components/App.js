@@ -10,7 +10,7 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-    const [selectedCard, setSelectedCard] = useState(false);
+    const [selectedCard, setSelectedCard] = useState(null);
 
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true);
@@ -33,7 +33,7 @@ function App() {
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
         setIsEditAvatarPopupOpen(false);
-        setSelectedCard(false);
+        setSelectedCard(null);
     }
 
     return (
@@ -57,11 +57,11 @@ function App() {
                 <input id="title" placeholder="Имя" type="text" className="popup__input popup__input_type_title"
                        name="name"
                        required minLength="2" maxLength="40"/>
-                <span className="popup__error title-error"></span>
+                <span className="popup__error title-error"/>
                 <input id="description" placeholder="О себе" type="text"
                        className="popup__input popup__input_type_description" name="description" required minLength="2"
                        maxLength="200"/>
-                <span className="popup__error description-error"></span>
+                <span className="popup__error description-error"/>
             </PopupWithForm>
             <PopupWithForm
                 name="card"
@@ -72,10 +72,10 @@ function App() {
             >
                 <input id="cardtitle" placeholder="Название" type="text" className="popup__input popup__input_card_name"
                        name="name" required minLength="2" maxLength="30"/>
-                <span className="popup__error cardtitle-error"></span>
+                <span className="popup__error cardtitle-error"/>
                 <input id="cardurl" placeholder="Ссылка на картинку" type="url"
                        className="popup__input popup__input_card_url" name="link" required/>
-                <span className="popup__error cardurl-error"></span>
+                <span className="popup__error cardurl-error"/>
             </PopupWithForm>
 
             <PopupWithForm
@@ -87,7 +87,7 @@ function App() {
             >
                 <input id="avatar" placeholder="Ссылка на картинку" type="url"
                        className="popup__input popup__input_avatar" name="avatar" required/>
-                <span className="popup__error avatar-error"></span>
+                <span className="popup__error avatar-error"/>
             </PopupWithForm>
 
             <PopupWithForm
