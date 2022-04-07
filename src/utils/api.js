@@ -24,7 +24,7 @@ class Api {
 	}
 
 	// получение данных профиля с сервера
-	getUser() {
+	getUserInfo() {
 		return fetch(`${this._address}/users/me`, {
 			method: 'GET',
 			headers: {
@@ -35,7 +35,7 @@ class Api {
 	}
 
 	// редактирование профиля
-	editProfile(item) {
+	editProfile({name, about}) {
 		return fetch(`${this._address}/users/me`, {
 			method: 'PATCH',
 			headers: {
@@ -43,14 +43,14 @@ class Api {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				name: item.name,
-				about: item.description
+				name,
+				about
 			})
 		}).then(this._checkResponse)
 	}
 
 	// добавление карточки
-	addNewCard(data) {
+	addNewCard({name, link}) {
 		return fetch(`${this._address}/cards`, {
 			method: 'POST',
 			headers: {
@@ -58,8 +58,8 @@ class Api {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				name: data.name,
-				link: data.link
+				name,
+				link
 			})
 		}).then(this._checkResponse)
 	}
@@ -75,21 +75,10 @@ class Api {
 		}).then(this._checkResponse)
 	}
 
-// добавление лайка
-	addLike(id) {
+	// добавление лайка / удаление лайка
+	changeLikeCardStatus(id, like) {
 		return fetch(`${this._address}/cards/likes/${id}`, {
-			method: 'PUT',
-			headers: {
-				authorization: this._token,
-				'Content-Type': 'application/json'
-			}
-		}).then(this._checkResponse)
-	}
-
-	// удаление лайка
-	removeLike(id) {
-		return fetch(`${this._address}/cards/likes/${id}`, {
-			method: 'DELETE',
+			method: like ? 'PUT' : 'DELETE',
 			headers: {
 				authorization: this._token,
 				'Content-Type': 'application/json'
@@ -98,7 +87,7 @@ class Api {
 	}
 
 	// поменять аватар
-	changeUserAvatar(item) {
+	changeUserAvatar({avatar}) {
 		return fetch(`${this._address}/users/me/avatar`, {
 			method: 'PATCH',
 			headers: {
@@ -106,7 +95,7 @@ class Api {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				avatar: item.avatar
+				avatar
 			})
 		})
 			.then(this._checkResponse)

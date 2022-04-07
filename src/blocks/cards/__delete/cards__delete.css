@@ -1,5 +1,5 @@
 .cards__delete {
-  /*display: none;*/
+
   position: absolute;
   width: 18px;
   height: 19px;
@@ -16,4 +16,8 @@
 
 .cards__delete:hover {
   opacity: 0.6;
+}
+
+.cards__delete_type_hidden {
+  display: none;
 }
