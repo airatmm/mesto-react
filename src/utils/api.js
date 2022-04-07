@@ -36,7 +36,6 @@ class Api {
 
 	// редактирование профиля
 	editProfile({name, about}) {
-		//console.log(name, about);
 		return fetch(`${this._address}/users/me`, {
 			method: 'PATCH',
 			headers: {
@@ -86,26 +85,6 @@ class Api {
 			}
 		}).then(this._checkResponse)
 	}
-// 	addLike(id) {
-// 		return fetch(`${this._address}/cards/likes/${id}`, {
-// 			method: 'PUT',
-// 			headers: {
-// 				authorization: this._token,
-// 				'Content-Type': 'application/json'
-// 			}
-// 		}).then(this._checkResponse)
-// 	}
-//
-// 	// удаление лайка
-// 	removeLike(id) {
-// 		return fetch(`${this._address}/cards/likes/${id}`, {
-// 			method: 'DELETE',
-// 			headers: {
-// 				authorization: this._token,
-// 				'Content-Type': 'application/json'
-// 			}
-// 		}).then(this._checkResponse)
-// 	}
 
 	// поменять аватар
 	changeUserAvatar({avatar}) {
