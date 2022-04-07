@@ -20,7 +20,7 @@ function App() {
     const [currentUser, setCurrentUser] = useState({});
     const [cards, setCards] = useState([]);
     const [cardDelete, setCardDelete] = useState({});
-    const [isLoading, setLoading] = useState();
+    const [isLoading, setLoading] = useState(false);
 
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true);
@@ -109,20 +109,17 @@ function App() {
 
 
     useEffect(() => {
-        Promise.all([api.getCards()])
-            .then(([cards]) => {
+        Promise.all([
+            api.getCards(),
+            api.getUserInfo()
+        ])
+            .then(([cards, info]) => {
                 setCards(cards);
-            })
-            .catch((err) => console.log(`Ошибка загрузки данных с сервера ${err}`));
-    }, []);
-
-    useEffect(() => {
-        api.getUserInfo()
-            .then((info) => {
                 setCurrentUser(info);
             })
-            .catch((err) => console.log(`Ошибка загрузки данных пользователя ${err}`));
+            .catch((err) => console.log(`Ошибка загрузки данных с сервера (cards or userInfo) ${err}`));
     }, []);
+
 
 
     return (
