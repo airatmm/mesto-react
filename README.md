@@ -25,8 +25,4 @@
 * EditAvatarPopup
 * ConfirmDeletePopup
 
-
-
-
-
 Необходимо сделать валидацию
