@@ -24,3 +24,5 @@
 * EditProfilePopup
 * EditAvatarPopup
 * ConfirmDeletePopup
+
+Необходимо сделать валидацию
